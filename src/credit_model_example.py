@@ -5,6 +5,25 @@ Version: 0.1
 Description:
 The aim of this model is to identify the bad customers
 Datamap is on the page 3 of dmahmeq_datamap.pdf
+
+Analytic approach:
+    Data processing:
+        All data is cleaned before being employed
+        Bootstrap (Not performed yet)
+        Vectorized data for machine learning
+            Multilayer Percetron Classifier (Done)
+            Decision Tree (Not yet)
+            Logistic Regression (Not yet)
+    Preliminary analysis:
+        Chi-square analysis among predictors (Not yet)
+    Modeling:
+        Multilayer Percetron Classifier
+        Decision Tree (In progress)
+        Logistic Regression (Not yet)
+    Model evaluation:
+        Confusion matrix (Not yet)
+        ROC analysis (Not yet)
+        Lift value analysis (Not yet)
 """
 
 from __future__ import print_function
