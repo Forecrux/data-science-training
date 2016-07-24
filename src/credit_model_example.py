@@ -123,7 +123,7 @@ if __name__ == "__main__":
     MLP_predictionAndLabels = MLP_result.select("prediction", "bad")
     MLP_evaluator = MulticlassClassificationEvaluator(metricName="precision")
     print(MLP_model)
-    print(MLP_result)
+    print(str(MLP_result.show())) # Print first 20 rows result to output file (plain text)
 
 
     #################################################################
