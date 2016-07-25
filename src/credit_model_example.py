@@ -31,6 +31,7 @@ from pyspark import SparkContext
 from pyspark.sql import SQLContext
 from pyspark.sql.types import *
 from pyspark.sql.functions import *
+from pyspark.mllib.stat import Statistics
 from pyspark.ml import Pipeline
 from pyspark.ml.classification import MultilayerPerceptronClassifier, DecisionTreeClassifier
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
@@ -103,6 +104,12 @@ if __name__ == "__main__":
     test = splits[1]
 
     #################################################################
+    # Preliminary analysis
+    #################################################################
+    print(clean_riskdata.describe().show())
+    print(riskdata.stat.crosstab("bad","job").show())
+    print(riskdata.stat.crosstab("bad","reason").show())
+    #################################################################
     # Multilayer Perceptron Classifier
     #################################################################
 
@@ -122,10 +129,10 @@ if __name__ == "__main__":
     MLP_result = MLP_model.transform(test)
     MLP_predictionAndLabels = MLP_result.select("prediction", "bad")
     MLP_evaluator = MulticlassClassificationEvaluator(metricName="precision")
-    print(MLP_model)
-    print(str(MLP_result.show())) # Print first 20 rows result to output file (plain text)
+    #print(MLP_model)
+    #print(str(MLP_result.show())) # Print first 20 rows result to output file (plain text)
 
-
+""""
     #################################################################
     # Decision Tree Classification
     #################################################################
@@ -153,9 +160,9 @@ if __name__ == "__main__":
     treeModel = dt_model.stages[2]
     # summary only
     print(treeModel)
-
+"""
     #Output setting
-    sys.stdout = saveout
-    outfile.close()
-        
-    sc.stop()
+sys.stdout = saveout
+outfile.close()
+
+sc.stop()
