@@ -15,8 +15,14 @@ Programmer      Date        Version     Description
 Quinton         25Jul2016   1.0         Initial version
 
 """
+import numpy as np
+import scipy.stats as stats
+import matplotlib
+matplotlib.use('Agg')   #Force the back-end without WindowX
+import matplotlib.pyplot as plt
 
-from pyspark.sql.functions import rand
-
-org_data = sql.Context.range(0,1000)
-org_data.select("id", rand(seed=0).alias("y"))
+#Generate random sample space and its Q-Q plot
+org_data = np.random.uniform(low = 0.0, high = 100.0, size = 250000)
+org_data_qqplot = stats.probplot(org_data, dist = "norm", plot = plt)
+plt.title("Normal Q-Q plot (Original dataset)")
+plt.savefig("/var/dev/pgm_log/qqplot.png")
